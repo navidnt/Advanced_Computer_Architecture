@@ -1,15 +1,17 @@
-# MIPS Pipeline Architecture (Phase 1)
+# Pipelined MIPS Architecture (Phase 1)
 
 ## Description
 
-This project represents Phase 1 of a MIPS pipeline architecture implementation. The pipeline design is aimed at executing MIPS commands efficiently. In this phase, none of the blocks in the pipeline have any latency, making it a straightforward pipeline setup.
+This project represents Phase 1 of a pipelined MIPS architecture implementation. The pipeline design is aimed at executing a subset of MIPS commands efficiently. In this phase, none of the blocks in the pipeline introduce any latency, making it a straightforward pipeline setup.
 
-The project supports a range of MIPS instructions, including both R-format and I-format instructions. Below is a list of the supported instructions:
+### Implemented Instructions
 
-**R Format:**
+This phase of the project implements the following MIPS instructions:
+
+**R Format Instructions:**
 - `add`
-- `sub`
 - `addu`
+- `sub`
 - `subu`
 - `and`
 - `or`
@@ -18,7 +20,7 @@ The project supports a range of MIPS instructions, including both R-format and I
 - `slt`
 - `sltu`
 
-**I Format:**
+**I Format Instructions:**
 - `addi`
 - `addiu`
 - `slti`
@@ -32,25 +34,32 @@ The project supports a range of MIPS instructions, including both R-format and I
 - `lw`
 - `sw`
 
-## Pipeline Design
+## Pipeline Stages
 
-In this phase, the pipeline architecture consists of stages for instruction fetch (IF), instruction decode (ID), execute (EX), memory access (MEM), and write-back (WB). Each stage processes instructions without introducing any latency.
+In this phase, the pipeline architecture consists of the following stages, each processing instructions without introducing any latency:
 
-### Test
+1. **Instruction Fetch (IF)**: Fetches instructions from memory.
+2. **Instruction Decode (ID)**: Decodes instructions and extracts relevant operands.
+3. **Execute (EX)**: Executes ALU operations.
+4. **Memory Access (MEM)**: Accesses data memory for load and store instructions.
+5. **Write-Back (WB)**: Writes data back to registers.
 
-To validate the functionality and correctness of the Phase 1 pipeline architecture, we provide two test benches:
+### Hazard Unit
 
-1. `pipeline_mips__tb_basic.v`: Use this test bench for basic functionality testing.
-2. `pipeline_mips__tb_complex.v`: Utilize this test bench to assess the architecture's performance with more complex programs.
+The project includes a hazard unit that handles data hazards and stalls the pipeline when necessary to ensure correct execution.
 
-### Test Files
+### Test Benches
 
-To execute the provided test benches, make sure to consider the files located in the "test files" folder. These files contain sample MIPS assembly programs suitable for testing and validation.
+To validate the functionality and correctness of this Phase 1 pipeline architecture, you can use test benches provided in your project. These test benches evaluate basic functionality as well as more complex scenarios.
 
 ### Simulation
 
-You can simulate and evaluate the Phase 1 pipeline architecture using ModelSim or any other Verilog simulator of your choice. Refer to your simulator's documentation for guidance on setting up and running simulations effectively.
+You can simulate and evaluate the Phase 1 pipelined MIPS architecture using ModelSim or any other Verilog simulator of your choice. Refer to your simulator's documentation for guidance on setting up and running simulations effectively.
 
-Feel free to reach out if you have any questions or require further assistance with testing or utilizing this pipeline architecture.
+## Usage
+
+To use this project, you can instantiate the `pipelined_mips` module in your higher-level test bench. Be sure to provide the appropriate clock (`clk`) and reset (`reset`) signals to drive the simulation.
+
+Feel free to reach out if you have any questions or need further assistance with testing or using this pipeline architecture.
 
 ---
